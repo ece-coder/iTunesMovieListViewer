@@ -1,6 +1,6 @@
 # iTunes Movie List Viewer
 This app displays the available movies from iTunes (AU) and show some details such as price, genre
-and synopsis.
+and synopsis. Created by Jibriel Ong
 ## MVVM Software Architectural Pattern (Model-View-ViewModel)
 * Using MVVM, a Viewmodel is used to separate the View and the Model of the app
 * The Viewmodel controls the view using Databinding
