@@ -32,7 +32,7 @@ import kotlinx.android.synthetic.main.activity_itunes_list.*
 
 /**
  * Displays the list of iTunes Movies from database and/or API
- *
+ * with SearchView to search iTunes Movies according to their title
  */
 
 class ItunesListActivity : AppCompatActivity() {
