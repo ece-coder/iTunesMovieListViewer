@@ -13,6 +13,7 @@
 
 	<android.support.v7.widget.CardView
 			android:id="@+id/itunes_card"
+			android:backgroundTint="@color/ligthGray"
 			android:clickable="true"
 			android:focusable="true"
 			android:layout_width="match_parent"
@@ -25,6 +26,7 @@
 			android:layout_marginTop="4dp">
 
 		<android.support.constraint.ConstraintLayout
+				android:background="@color/ligthGray"
 				android:layout_marginBottom="10dp"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent">
@@ -38,6 +40,7 @@
 					app:imgUrl="@{item.artwork}"/>
 			<TextView
 					android:hint="Not Indicated"
+					android:textColor="@color/white"
 					android:textStyle="bold"
 					android:maxLines="2"
 					android:text="@{item.lastAccess}"
@@ -50,6 +53,7 @@
 					android:layout_marginLeft="8dp" android:layout_marginStart="8dp"/>
 			<TextView
 					android:hint="TrackName"
+					android:textColor="@color/white"
 					android:textStyle="bold"
 					android:maxLines="2"
 					android:text="@{item.trackName}"
@@ -64,6 +68,7 @@
 					android:layout_marginLeft="8dp"/>
 			<TextView
 					android:hint="Genre"
+					android:textColor="@color/white"
 					android:textStyle="bold"
 					android:maxLines="2"
 					android:text="@{item.genre}"
@@ -75,6 +80,7 @@
 					android:layout_marginStart="8dp"/>
 			<TextView
 					android:hint="Price"
+					android:textColor="@color/white"
 					android:textStyle="bold"
 					android:maxLines="2"
 					android:text="@{item.price}"
@@ -90,6 +96,7 @@
 					app:layout_constraintVertical_bias="1.0"/>
 			<TextView
 					android:text="Last Viewed:"
+					android:textColor="@color/white"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:id="@+id/textView5"
@@ -100,6 +107,7 @@
 					android:layout_marginLeft="16dp"/>
 			<TextView
 					android:text="Title:"
+					android:textColor="@color/white"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:id="@+id/textView6" app:layout_constraintStart_toEndOf="@+id/itunesImage"
@@ -107,6 +115,7 @@
 					app:layout_constraintTop_toBottomOf="@+id/textView"/>
 			<TextView
 					android:text="Genre:"
+					android:textColor="@color/white"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:id="@+id/textView7"
@@ -116,6 +125,7 @@
 			/>
 			<TextView
 					android:text="Price:"
+					android:textColor="@color/white"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:id="@+id/textView8"
@@ -124,6 +134,7 @@
 					android:layout_marginLeft="16dp" android:layout_marginStart="16dp"/>
 			<TextView
 					android:text="@{item.currency}"
+					android:textColor="@color/white"
 					android:hint="PHP"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
