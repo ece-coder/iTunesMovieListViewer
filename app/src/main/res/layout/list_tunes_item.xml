@@ -41,6 +41,7 @@
 			<TextView
 					android:hint="Not Indicated"
 					android:textColor="@color/gray"
+					android:textColorHint="@color/gray"
 					android:textStyle="bold"
 					android:maxLines="2"
 					android:text="@{item.lastAccess}"
