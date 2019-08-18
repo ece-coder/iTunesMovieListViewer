@@ -45,6 +45,10 @@ class ItunesListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_itunes_list)
 
+        val actionBar = supportActionBar
+        actionBar!!.setDisplayShowTitleEnabled(false)
+        actionBar!!.hide()
+
 
         // Initializing recycler view
         layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
