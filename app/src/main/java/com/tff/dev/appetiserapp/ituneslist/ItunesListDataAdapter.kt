@@ -6,6 +6,8 @@ import android.databinding.ViewDataBinding
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import com.tff.dev.appetiserapp.R
 import com.tff.dev.appetiserapp.databinding.ListTunesItemBinding
 import com.tff.dev.appetiserapp.room.ItunesData
@@ -18,10 +20,11 @@ import kotlinx.android.synthetic.main.list_tunes_item.view.*
  *
  */
 
-class ItunesListDataAdapter (private val clickForMoreDetailsListener: (ItunesData)->Unit): RecyclerView.Adapter<ItunesListDataAdapter.ViewHolder>(){
+class ItunesListDataAdapter (private val clickForMoreDetailsListener: (ItunesData)->Unit): RecyclerView.Adapter<ItunesListDataAdapter.ViewHolder>(), Filterable{
 
 
     private var itunesList: List<ItunesData> = emptyList()
+    private var itunesListAll: List<ItunesData> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder {
         val binding: ListTunesItemBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context),
@@ -57,6 +60,52 @@ class ItunesListDataAdapter (private val clickForMoreDetailsListener: (ItunesDat
 
     fun setItunesList(itunesList: List<ItunesData>) {
         this.itunesList = itunesList
+        itunesListAll = itunesList
+    }
+
+
+    override fun getFilter(): Filter {
+
+        var filter = object : Filter(){
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val charString = constraint.toString()
+                val filterResults = FilterResults()
+
+                if(itunesListAll.isNotEmpty()){
+                    itunesList = itunesListAll
+                    if (charString.isNotEmpty()) {
+
+                        var filteredList: List<ItunesData> = listOf()
+                        for (ItunesData in itunesListAll) {
+
+                            if (ItunesData.trackName.toLowerCase().contains(charString.toLowerCase())) {
+                                filteredList += ItunesData
+                            }
+                        }
+
+                        itunesList = filteredList
+
+                    }
+                    filterResults.values = itunesList
+
+                }
+
+                return filterResults
+            }
+
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+
+                notifyDataSetChanged()
+
+                if(itunesList.isNotEmpty()){
+                    if (results != null && results.count > 0) {
+                        itunesList = results.values as List<ItunesData>
+                    }
+                }
+
+            }
+        }
+        return filter
     }
 
 }

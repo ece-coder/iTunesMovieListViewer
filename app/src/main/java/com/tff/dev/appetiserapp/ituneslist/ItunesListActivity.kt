@@ -6,7 +6,10 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.SearchView
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.LinearLayout
 import com.tff.dev.appetiserapp.App
 import com.tff.dev.appetiserapp.R
@@ -45,10 +48,9 @@ class ItunesListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_itunes_list)
 
-        val actionBar = supportActionBar
-        actionBar!!.setDisplayShowTitleEnabled(false)
-        actionBar!!.hide()
 
+        var actionBar = supportActionBar
+        actionBar!!.setDisplayShowTitleEnabled(true)
 
         // Initializing recycler view
         layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
@@ -108,6 +110,46 @@ class ItunesListActivity : AppCompatActivity() {
         }
 
     }
+
+
+    private var menu: Menu? = null
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.search_menu, menu)
+        this.menu = menu
+        val search = menu!!.findItem(R.id.list_filter)
+        val searchView = search.actionView as SearchView
+        search(searchView)
+        return true
+    }
+
+    /**
+     * Method to use the string from SearchView in order to filter the iTunes list
+     *
+     * @param searchView the reference SearchView
+     */
+
+    private fun search(searchView: SearchView) {
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                adapter?.filter?.filter(newText)
+                return true
+            }
+        })
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if(item!!.itemId == R.id.list_filter){
+
+        }
+        return true
+    }
+
 
     override fun onStart() {
         super.onStart()
@@ -226,6 +268,11 @@ class ItunesListActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         itunesViewModel!!.sotrePageRef(0)
+        if(menu != null) {
+            val search = menu?.findItem(R.id.list_filter)
+            val searchView = search?.actionView as SearchView
+            searchView.isIconified = true
+        }
     }
 
 }
