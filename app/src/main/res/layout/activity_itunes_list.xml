@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+<android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ituneslist.ItunesListActivity">
+
+
+	<android.support.v4.widget.SwipeRefreshLayout
+			android:id="@+id/swipe_layout"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+
+		<android.support.v7.widget.RecyclerView
+				android:id="@+id/itunes_recycler"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior"
+				tools:listitem="@layout/list_tunes_item"/>
+
+
+
+	</android.support.v4.widget.SwipeRefreshLayout>
+
+</android.support.design.widget.CoordinatorLayout>
+
+</layout>
